@@ -79,8 +79,8 @@ const Blog = () => {
     : blogPosts.filter(post => post.category === selectedCategory);
 
   const handleReadMore = (postId: string) => {
-    // Navigate to the blog HTML files in the blog directory
-    window.open(`blog/${postId}.html`, '_blank');
+    // Navigate to the blog HTML files in the public/blog directory
+    window.open(`/hazeberg-consulting/blog/${postId}.html`, '_blank');
   };
 
   return (
