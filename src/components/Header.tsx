@@ -26,6 +26,10 @@ const Header = () => {
   ];
 
   const handleNavClick = (href: string) => {
+    if (href === '#careers') {
+      window.open('/hazeberg-consulting/careers.html', '_blank');
+      return;
+    }
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

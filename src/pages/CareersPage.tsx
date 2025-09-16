@@ -175,7 +175,7 @@ const CareersPage = () => {
     window.close();
     // Fallback if window.close() doesn't work
     setTimeout(() => {
-      window.location.href = '/';
+      window.location.href = '/hazeberg-consulting/';
     }, 100);
   };
 

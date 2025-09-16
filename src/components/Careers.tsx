@@ -3,7 +3,7 @@ import { ArrowRight, Users, TrendingUp, Award } from 'lucide-react';
 
 const Careers = () => {
   const handleNavigateToCareers = () => {
-    window.open('/careers.html', '_blank');
+    window.open('/hazeberg-consulting/careers.html', '_blank');
   };
 
   const benefits = [
