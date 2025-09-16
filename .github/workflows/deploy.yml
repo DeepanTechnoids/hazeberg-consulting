@@ -2,13 +2,13 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]  # or your branch
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write      # Required for GitHub Pages
-  id-token: write   # Required for OIDC
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
@@ -20,13 +20,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist   # <- change to your build folder
+          path: ./dist   # Vite builds to dist
 
       - name: Deploy to GitHub Pages
         id: deployment
