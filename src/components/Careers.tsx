@@ -1,10 +1,11 @@
 import React from 'react';
 import { ArrowRight, Users, TrendingUp, Award } from 'lucide-react';
 
-const Careers = () => {
-  const handleNavigateToCareers = () => {
-    window.open('/careers.html', '_blank');
-  };
+interface CareersProps {
+  onNavigateToCareers?: () => void;
+}
+
+const Careers: React.FC<CareersProps> = ({ onNavigateToCareers }) => {
 
   const benefits = [
     {
@@ -68,7 +69,7 @@ const Careers = () => {
                 in consulting, technology, and business transformation.
               </p>
               <button 
-                onClick={handleNavigateToCareers}
+                onClick={onNavigateToCareers}
                 className="bg-white text-yellow-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-yellow-50 transition-all duration-300 transform hover:scale-105 inline-flex items-center liquid-hover"
               >
                 View Open Positions

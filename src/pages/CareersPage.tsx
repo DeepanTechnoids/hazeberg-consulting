@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { ArrowLeft, MapPin, Calendar, Clock, Users, DollarSign, CheckCircle } from 'lucide-react';
 import JobApplicationForm from '../components/careers/JobApplicationForm';
 
-const CareersPage = () => {
+interface CareersPageProps {
+  onNavigateHome?: () => void;
+}
+
+const CareersPage: React.FC<CareersPageProps> = ({ onNavigateHome }) => {
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -171,13 +175,6 @@ const CareersPage = () => {
     }
   ];
 
-  const handleBackToMain = () => {
-    window.close();
-    // Fallback if window.close() doesn't work
-    setTimeout(() => {
-      window.location.href = '/';
-    }, 100);
-  };
 
   const handleApplyClick = (jobId: string) => {
     setSelectedJob(jobId);
@@ -196,36 +193,20 @@ const CareersPage = () => {
   const selectedJobData = jobs.find(job => job.id === selectedJob);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={handleBackToMain}
-                className="flex items-center text-gray-600 hover:text-yellow-600 transition-colors duration-300"
-              >
-                <ArrowLeft size={20} className="mr-2" />
-                Back to Main Site
-              </button>
-            </div>
-            <div className="flex items-center">
-              <div className="text-2xl font-bold bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-                Hazeberg
-              </div>
-              <span className="ml-2 text-lg font-medium text-gray-900">
-                Consulting
-              </span>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Page Content */}
-      <main className="py-12">
+    <main className="py-12 bg-gray-50 min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
+            {/* Back Button */}
+            <div className="mb-8">
+              <button
+                onClick={onNavigateHome}
+                className="flex items-center text-gray-600 hover:text-yellow-600 transition-colors duration-300 bg-white px-4 py-2 rounded-lg shadow-sm hover:shadow-md"
+              >
+                <ArrowLeft size={20} className="mr-2" />
+                Back to Home
+              </button>
+            </div>
+            
             {/* Page Header */}
             <div className="text-center mb-16">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -336,8 +317,7 @@ const CareersPage = () => {
             )}
           </div>
         </div>
-      </main>
-    </div>
+    </main>
   );
 };
 

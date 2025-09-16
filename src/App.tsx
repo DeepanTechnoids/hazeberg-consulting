@@ -15,10 +15,12 @@ import Contact from './components/Contact';
 import Careers from './components/Careers';
 import Footer from './components/Footer';
 import FloatingYouTubeButton from './components/FloatingYouTubeButton';
+import CareersPage from './pages/CareersPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const [currentPage, setCurrentPage] = useState<'home' | 'careers'>('home');
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -28,6 +30,13 @@ function App() {
     }, 100);
   };
 
+  const navigateToCareers = () => {
+    setCurrentPage('careers');
+  };
+
+  const navigateToHome = () => {
+    setCurrentPage('home');
+  };
   // Prevent scrolling during loading
   useEffect(() => {
     if (isLoading) {
@@ -50,20 +59,26 @@ function App() {
       {/* Main Content - Shows after loading */}
       {!isLoading && (
         <div className={`main-content ${showContent ? 'content-visible' : 'content-hidden'}`}>
-          <Header />
-          <main>
-            <Hero />
-            <About />
-            <Clients />
-            <Services />
-            <Solutions />
-            <Achievements />
-            <CaseStudies />
-            <Team />
-            <Blog />
-            <Careers />
-            <Contact />
-          </main>
+          <Header currentPage={currentPage} onNavigateHome={navigateToHome} />
+          
+          {currentPage === 'home' ? (
+            <main>
+              <Hero />
+              <About />
+              <Clients />
+              <Services />
+              <Solutions />
+              <Achievements />
+              <CaseStudies />
+              <Team />
+              <Blog />
+              <Careers onNavigateToCareers={navigateToCareers} />
+              <Contact />
+            </main>
+          ) : (
+            <CareersPage onNavigateHome={navigateToHome} />
+          )}
+          
           <Footer />
         </div>
       )}
