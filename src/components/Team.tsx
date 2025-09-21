@@ -14,7 +14,7 @@ const Team = () => {
     },
     {
       name: "Ajith Kumar",
-      role: "Director",
+      role: "Lead Consultant",
       image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&crop=face",
       bio: "Strategic director with expertise in regional operations and business growth",
       specialties: ["Regional Operations", "Strategic Planning", "Team Leadership"],
